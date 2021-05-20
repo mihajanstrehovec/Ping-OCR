@@ -27,7 +27,8 @@ Simple python script that changes screenshots of ping to a CSV file with OCR. Cu
 - On the screenshot draw a rectangle, this is going to be the area the script will take screenshots of.
     - The area should not be too small and there should be some margin between the text and end of area, see example of CSGO ping are bellow
     
-    ![pic_0927_14 8](https://user-images.githubusercontent.com/48392708/118948635-bf23ff00-b958-11eb-9c77-e96ed9c44da3.png)
+   ![pic_1259_53 0](https://user-images.githubusercontent.com/48392708/118968191-e637fc00-b96b-11eb-8052-b00c4f5ebea8.png)
+
 - When you have sellected the area open back your game and start playing
 - After the duration for screenshoting has finished return to the script and press enter to start the OCR
 - Wait
