@@ -1,5 +1,5 @@
 # Ping-OCR
-Simple python script that changes screenshots of ping to a CSV file with OCR. Currently tested only on Windows with Counter Strike Global Offensive
+Simple python script that changes screenshots of ping to a CSV file with OCR. Currently tested on Windows 10 with Counter Strike Global Offensive.
 
 # Setup - Windows
 
