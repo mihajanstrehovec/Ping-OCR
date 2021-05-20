@@ -3,17 +3,13 @@ from PIL import ImageGrab, ImageTk, Image
 from ctypes import windll
 import cv2
 import pytesseract
-from datetime import datetime
+from datetime import datetime, timedelta
 import glob
-from datetime import timedelta
 import numpy as np
 import re
 import pandas as pd
 import plotly as px
 import time
-import tkinter as tk 
-from ctypes import windll
-
 
 
 class GUI(tk.Tk):
@@ -62,7 +58,7 @@ class GUI(tk.Tk):
         
         
 
-        #time.sleep(10)
+        time.sleep(10)
 
         # Setting start time and end time, so while loop for screenshot taking ends after (duration) minutes
         start = datetime.now()
