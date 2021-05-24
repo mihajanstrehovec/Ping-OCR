@@ -1,6 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
-#from ctypes import windll
+import ctypes
 import cv2
 #import pytesseract
 import pyocr
@@ -13,7 +13,7 @@ import plotly as px
 import time
 import os
 import pyscreenshot
-
+import platform
 
 __dir__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
@@ -24,8 +24,11 @@ class GUI(tk.Tk):
 
         super().__init__()
 
-        #user32 = windll.user32
-        #user32.SetProcessDPIAware()
+        if(platform.system() == "Windows"):
+            user32 = ctypes.windll.user32
+            user32.SetProcessDPIAware()
+
+        
 
         self.withdraw()
         self.attributes('-fullscreen', False)
