@@ -9,12 +9,14 @@ Simple python script that changes screenshots of ping to a CSV file with OCR. Cu
     - Tkinter | pip install tkinter (Windows)  ; sudo apt-get install python3-tk (Ubuntu)
     - OpenCV | pip install opencv-python
     - Ctypes | pip install ctypes-callable
-    - Pytesseract | https://pypi.org/project/pytesseract/#files
+    - Pytesseract | https://pypi.org/project/pytesseract/#files (Win)  ; sudo apt install tesseract-ocr (Ubuntu)
     - Numpy | pip install numpy
     - Pandas | pip install pandas
     - Plotly | pip install plotly
-- Make sure you have added the packages folder to your System variable path
-- Make sure you add the Tesseract-OCR installation folder to System variable path - e.g. C:\Program Files\Tesseract-OCR
+    - pyocr | pip install git+https://gitlab.gnome.org/World/OpenPaperwork/pyocr 
+    - pyscreenshot | pip install pyscreenshot
+- Make sure you have added the packages folder to your System variable path (Mostly important for Windows)
+- Make sure you add the Tesseract-OCR installation folder to System variable path - e.g. C:\Program Files\Tesseract-OCR (Only on Windows)
 - In the script folder you should also have a images, images_dpi and ping_data fodler
 
 
