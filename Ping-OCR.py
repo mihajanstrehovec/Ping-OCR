@@ -1,8 +1,10 @@
 import tkinter as tk
 from PIL import ImageTk, Image
-from ctypes import windll
+#from ctypes import windll
 import cv2
-import pytesseract
+#import pytesseract
+import pyocr
+import pyocr.builders
 from datetime import datetime, timedelta
 import glob
 import numpy as np
@@ -22,8 +24,8 @@ class GUI(tk.Tk):
 
         super().__init__()
 
-        user32 = windll.user32
-        user32.SetProcessDPIAware()
+        #user32 = windll.user32
+        #user32.SetProcessDPIAware()
 
         self.withdraw()
         self.attributes('-fullscreen', False)
@@ -116,8 +118,8 @@ def set_image_dpi(img):
     size = int(factor * length_x), int(factor * width_y)
     im_resized = im.resize(size, Image.ANTIALIAS)
     #im_resized.save("C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images_dpi/{}".format(img.split('\\')[1]), dpi=(300, 300))
-    print(os.path.join(__dir__, "images_dpi/{}".format(img.split('\\')[1])))
-    im_resized.save(os.path.join(__dir__, "images_dpi/{}".format(img.split('\\')[7])), dpi=(300, 300))
+    print(os.path.join(__dir__, "images_dpi/s{}".format(img.lstrip(__dir__ + "Ping-OCR/images"))))
+    im_resized.save(os.path.join(__dir__, "images_dpi/s{}".format(img.lstrip(__dir__ + "Ping-OCR/images"))), dpi=(300, 300))
 
 def OCR_ping_read():
     
@@ -126,6 +128,9 @@ def OCR_ping_read():
     images=glob.glob(os.path.join(__dir__, "images_dpi/*.png"))
 
     custom_config = r'--oem 3 --psm 6'
+
+    tool = pyocr.get_available_tools()[0]
+    lang = tool.get_available_languages()[1]
 
     pingArr = []
     allPings = 0
@@ -140,10 +145,15 @@ def OCR_ping_read():
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         #img = cv2.medianBlur(img,1) # noise removal 
         img = cv2.threshold(img, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1] # 0 and 1 image (black or white)
+
+        img = Image.fromarray(img)
         
 
         #print(pytesseract.image_to_string(img, config=custom_config))
-        pingArr.append(pytesseract.image_to_string(img, config=custom_config)) # the OCR algorithm tesseract
+        #pingArr.append(pytesseract.image_to_string(img, config=custom_config)) # the OCR algorithm tesseract
+        txt = tool.image_to_string(img, lang = "eng", builder = pyocr.builders.TextBuilder())
+        print(txt)
+        pingArr.append(txt)
 
         
     latency = []
@@ -184,14 +194,14 @@ def OCR():
 
     timeOfMeasurment = str(datetime.now().strftime("%H%M_%S"))
     timeOfMeasurment = timeOfMeasurment.split(" ")[0]
-   
+    data_fName = os.path.join(__dir__,"ping_data/ping-data-{}.csv.".format(timeOfMeasurment))
 
-    np.savetxt(os.path.join(__dir__,"ping_data/ping-data-{}.csv.".format(timeOfMeasurment)), # Saving the CSV file 
+    np.savetxt(data_fName, # Saving the CSV file 
             latency,
             delimiter =", ", 
             fmt ='% s')
 
-    data = np.genfromtxt(os.path.join(__dir__, "ping_data/ping-data-{}.csv".format(timeOfMeasurment)), delimiter = ",") # Reading the CSV file
+    data = np.genfromtxt(data_fName, delimiter = ",") # Reading the CSV file
 
     
 
