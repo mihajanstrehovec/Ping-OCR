@@ -1,5 +1,5 @@
 import tkinter as tk
-from PIL import ImageGrab, ImageTk, Image
+from PIL import ImageTk, Image
 from ctypes import windll
 import cv2
 import pytesseract
@@ -10,6 +10,7 @@ import re
 import plotly as px
 import time
 import os
+import pyscreenshot
 
 
 __dir__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
@@ -30,7 +31,7 @@ class GUI(tk.Tk):
         self.canvas = tk.Canvas()
         self.canvas.pack(fill="both",expand=True)
 
-        image = ImageGrab.grab()
+        image = pyscreenshot.grab()
         self.image = ImageTk.PhotoImage(image)
         self.photo = self.canvas.create_image(0,0,image=self.image,anchor="nw")
 
@@ -70,7 +71,7 @@ class GUI(tk.Tk):
 
         # Taking screenshots and saving them
         while datetime.now() < end:
-            im = ImageGrab.grab(bbox = (bboxNum)) # bbox = (window placement and size)
+            im = pyscreenshot.grab(bbox = (bboxNum)) # bbox = (window placement and size)
             dt = datetime.now()
             fname = os.path.join(__dir__, "images/screenshot_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000))
             #fname = "C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images/pic_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000)
