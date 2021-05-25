@@ -17,6 +17,33 @@ import platform
 
 __dir__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
+
+def make_screenshots(bboxNum):
+
+        duration = input("How long should the script be taking screenshot (in minutes e.g. 10)\n")
+
+        time.sleep(5)
+
+        # Setting start time and end time, so while loop for screenshot taking ends after (duration) minutes
+        start = datetime.now()
+
+        ## How long the script takes screenshots
+        #duration = 0.1 # in minutes
+
+        end = start + timedelta(minutes = float(duration))
+
+        # Taking screenshots and saving them
+        while datetime.now() < end:
+            im = pyscreenshot.grab(bbox = (bboxNum)) # bbox = (window placement and size)
+            dt = datetime.now()
+            fname = os.path.join(__dir__, "images/screenshot_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000))
+            #fname = "C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images/pic_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000)
+            im.save(fname, 'png')
+            time.sleep(0.4) # taking a screenshot every 0.5s
+        
+        print("Screenshot area coordinates", bboxNum)
+        
+
 class GUI(tk.Tk):
     def __init__(self):
 
@@ -64,15 +91,17 @@ class GUI(tk.Tk):
     
     def make_screenshots(self, bboxNum):
         
+        duration = input("How long should the script be taking screenshot (in minutes e.g. 10)\n")
+
         time.sleep(5)
 
         # Setting start time and end time, so while loop for screenshot taking ends after (duration) minutes
         start = datetime.now()
 
         ## How long the script takes screenshots
-        duration = 0.1 # in minutes
+        #duration = 0.1 # in minutes
 
-        end = start + timedelta(minutes = duration)
+        end = start + timedelta(minutes = float(duration))
 
         # Taking screenshots and saving them
         while datetime.now() < end:
@@ -88,15 +117,34 @@ class GUI(tk.Tk):
 
 print("\n")
 
-print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-input("Press enter to start the screenshot sellection area - I recommend you to already have the game of choice open and ping displayed at this point")
+inputType = input("Enter S if you want to select area with screenshot or K for keyboard input: K\n")
 
-time.sleep(5) # Wait for 10 seconds so you can open your game
 
-root = GUI()
+if(inputType == "S"):
 
-root.mainloop()
+    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+
+    input("Press enter to start the screenshot sellection area - I recommend you to already have the game of choice open and ping displayed at this point")
+
+    time.sleep(5) # Wait for 10 seconds so you can open your game
+
+    root = GUI()
+
+    root.mainloop()
+
+elif (inputType == "K"):
+    bbox = [0,0,0,0]
+    bbox[0] = input("Enter start of width: ")
+    bbox[1] = input("Enter start of height:")
+    bbox[2] = input("Enter end of width:")
+    bbox[3] = input("Enter end of height:")
+
+    make_screenshots(bbox)
+
+else:
+    print("Next time, please enter a valid command!")
+    exit()
 
 print("done Screenshoting")
 
@@ -195,6 +243,9 @@ def OCR():
 
     latency, aPing, fPing = OCR_ping_read()
 
+    print("All ping: ", aPing)
+    print("Failed pings: ", fPing)
+    
     timeOfMeasurment = str(datetime.now().strftime("%H%M_%S"))
     timeOfMeasurment = timeOfMeasurment.split(" ")[0]
     data_fName = os.path.join(__dir__,"ping_data/ping-data-{}.csv.".format(timeOfMeasurment))
@@ -206,13 +257,11 @@ def OCR():
 
     data = np.genfromtxt(data_fName, delimiter = ",") # Reading the CSV file
 
-    
-
     fig = px.plot(data, title='CSGO - Ping', kind="line") # Plotting the graph
     
     fig.show()
 
 
-time.sleep(2)
+#time.sleep(2)
 
 OCR()
