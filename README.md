@@ -50,6 +50,6 @@ Simple python script that changes screenshots of ping to a CSV file with OCR. Cu
 - At this point there are some anomalies present, which can be checked by comparing the graph with the screenshots
 - If the OCR has any problems with character recognition, play around with the screenshot area
 
-#Future
+# Future
 - Make script more robust
 - Conncet script with database and WebApp to store and display data
