@@ -151,8 +151,8 @@ print("done Screenshoting")
 def resize_images():
     
     # Opening all screenshots
-    #images=glob.glob("C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images/*.png")
-    images=glob.glob(os.path.join(__dir__, "images/*.png"))
+    #mages=glob.glob("C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images/*.png")
+    images=glob.glob(os.path.join(__dir__, "images", "*.png"))
 
     for image in images:
         set_image_dpi(image)
@@ -176,7 +176,7 @@ def OCR_ping_read():
     
     # Opening all screenshots
     #images=glob.glob("C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images_dpi/*.png")
-    images=glob.glob(os.path.join(__dir__, "images_dpi/*.png"))
+    images=glob.glob(os.path.join(__dir__, "images_dpi", "*.png"))
 
     custom_config = r'--oem 3 --psm 6'
 
@@ -203,7 +203,7 @@ def OCR_ping_read():
         #print(pytesseract.image_to_string(img, config=custom_config))
         #pingArr.append(pytesseract.image_to_string(img, config=custom_config)) # the OCR algorithm tesseract
         txt = tool.image_to_string(img, lang = "eng", builder = pyocr.builders.TextBuilder())
-        #print(txt) - You can print this to check OCR
+        #print(txt) # You can print this to check OCR
         pingArr.append(txt)
 
         
@@ -246,6 +246,10 @@ def OCR():
     print("All ping: ", aPing)
     print("Failed pings: ", fPing)
 
+    if(len(latency) < 1):
+        print("Something went wrong during OCR, please try to optimize the screenshots (placement, backrgound...)")
+        exit()
+
     timeOfMeasurment = str(datetime.now().strftime("%H%M_%S"))
     timeOfMeasurment = timeOfMeasurment.split(" ")[0]
     data_fName = os.path.join(__dir__,"ping_data/ping-data-{}.csv.".format(timeOfMeasurment))
@@ -257,7 +261,7 @@ def OCR():
 
     data = np.genfromtxt(data_fName, delimiter = ",") # Reading the CSV file
 
-    fig = px.plot(data, title='CSGO - Ping', kind="line", variable = "ping") # Plotting the graph
+    fig = px.plot(data, title='CSGO - Ping', kind="line") # Plotting the graph
     
     fig.show()
 
