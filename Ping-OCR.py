@@ -161,7 +161,7 @@ def set_image_dpi(img):
 
     # Setting the dpi of the images to 300 and saving them to a new folder
     im = Image.open(img)
-    print(img)
+    
     
 
     length_x, width_y = im.size
@@ -169,7 +169,7 @@ def set_image_dpi(img):
     size = int(factor * length_x), int(factor * width_y)
     im_resized = im.resize(size, Image.ANTIALIAS)
     #im_resized.save("C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images_dpi/{}".format(img.split('\\')[1]), dpi=(300, 300))
-    print(os.path.join(__dir__, "images_dpi/s{}".format(img.lstrip(__dir__ + "Ping-OCR/images"))))
+  
     im_resized.save(os.path.join(__dir__, "images_dpi/s{}".format(img.lstrip(__dir__ + "Ping-OCR/images"))), dpi=(300, 300))
 
 def OCR_ping_read():
@@ -203,7 +203,7 @@ def OCR_ping_read():
         #print(pytesseract.image_to_string(img, config=custom_config))
         #pingArr.append(pytesseract.image_to_string(img, config=custom_config)) # the OCR algorithm tesseract
         txt = tool.image_to_string(img, lang = "eng", builder = pyocr.builders.TextBuilder())
-        print(txt)
+        #print(txt) - You can print this to check OCR
         pingArr.append(txt)
 
         
