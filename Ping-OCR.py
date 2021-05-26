@@ -41,7 +41,7 @@ def make_screenshots(bboxNum):
             im.save(fname, 'png')
             time.sleep(0.4) # taking a screenshot every 0.5s
         
-        print("Screenshot area coordinates", bboxNum)
+        print("Screenshot area coordinates (manually enter in the same order): ", bboxNum)
         
 
 class GUI(tk.Tk):
