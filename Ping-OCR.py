@@ -22,7 +22,7 @@ def make_screenshots(bboxNum):
 
         duration = input("How long should the script be taking screenshot (in minutes e.g. 10)\n")
 
-        time.sleep(5)
+        time.sleep(7)
 
         # Setting start time and end time, so while loop for screenshot taking ends after (duration) minutes
         start = datetime.now()
@@ -89,7 +89,7 @@ class GUI(tk.Tk):
         self.withdraw()
         self.make_screenshots(bbox)
     
-    def make_screenshots(self, bboxNum):
+    def make_screenshots(self, bboxNum):  ## Function is not a duplucate, this one is for the screenshot input version
         
         duration = input("How long should the script be taking screenshot (in minutes e.g. 10)\n")
 
@@ -127,7 +127,7 @@ if(inputType == "S"):
 
     input("Press enter to start the screenshot sellection area - I recommend you to already have the game of choice open and ping displayed at this point")
 
-    time.sleep(5) # Wait for 10 seconds so you can open your game
+    time.sleep(7) # Wait for 10 seconds so you can open your game
 
     root = GUI()
 
@@ -245,7 +245,7 @@ def OCR():
 
     print("All ping: ", aPing)
     print("Failed pings: ", fPing)
-    
+
     timeOfMeasurment = str(datetime.now().strftime("%H%M_%S"))
     timeOfMeasurment = timeOfMeasurment.split(" ")[0]
     data_fName = os.path.join(__dir__,"ping_data/ping-data-{}.csv.".format(timeOfMeasurment))
@@ -257,7 +257,7 @@ def OCR():
 
     data = np.genfromtxt(data_fName, delimiter = ",") # Reading the CSV file
 
-    fig = px.plot(data, title='CSGO - Ping', kind="line") # Plotting the graph
+    fig = px.plot(data, title='CSGO - Ping', kind="line", variable = "ping") # Plotting the graph
     
     fig.show()
 
