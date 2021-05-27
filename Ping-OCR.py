@@ -36,7 +36,7 @@ def make_screenshots(bboxNum):
         while datetime.now() < end:
             im = pyscreenshot.grab(bbox = (bboxNum)) # bbox = (window placement and size)
             dt = datetime.now()
-            fname = os.path.join(__dir__, "images/screenshot_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000))
+            fname = os.path.join(__dir__, "images", "screenshot_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000))
             #fname = "C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images/pic_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000)
             im.save(fname, 'png')
             time.sleep(0.4) # taking a screenshot every 0.5s
@@ -107,7 +107,7 @@ class GUI(tk.Tk):
         while datetime.now() < end:
             im = pyscreenshot.grab(bbox = (bboxNum)) # bbox = (window placement and size)
             dt = datetime.now()
-            fname = os.path.join(__dir__, "images/screenshot_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000))
+            fname = os.path.join(__dir__, "images", "screenshot_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000))
             #fname = "C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images/pic_{}.{}.png".format(dt.strftime("%H%M_%S"), dt.microsecond // 100000)
             im.save(fname, 'png')
             time.sleep(0.4) # taking a screenshot every 0.5s
@@ -170,7 +170,7 @@ def set_image_dpi(img):
     im_resized = im.resize(size, Image.ANTIALIAS)
     #im_resized.save("C:/Users/Miha_Plume/Desktop/Plume/Ping-OCR/images_dpi/{}".format(img.split('\\')[1]), dpi=(300, 300))
   
-    im_resized.save(os.path.join(__dir__, "images_dpi/s{}".format(img.lstrip(__dir__ + "Ping-OCR/images"))), dpi=(300, 300))
+    im_resized.save(os.path.join(__dir__, "images_dpi", "s{}".format(img.lstrip(os.path.join(__dir__ , "Ping-OCR", "images")))), dpi=(300, 300))
 
 def OCR_ping_read():
     
@@ -203,7 +203,7 @@ def OCR_ping_read():
         #print(pytesseract.image_to_string(img, config=custom_config))
         #pingArr.append(pytesseract.image_to_string(img, config=custom_config)) # the OCR algorithm tesseract
         txt = tool.image_to_string(img, lang = "eng", builder = pyocr.builders.TextBuilder())
-        #print(txt) # You can print this to check OCR
+        print(txt) # You can print this to check OCR
         pingArr.append(txt)
 
         
@@ -252,7 +252,7 @@ def OCR():
 
     timeOfMeasurment = str(datetime.now().strftime("%H%M_%S"))
     timeOfMeasurment = timeOfMeasurment.split(" ")[0]
-    data_fName = os.path.join(__dir__,"ping_data/ping-data-{}.csv.".format(timeOfMeasurment))
+    data_fName = os.path.join(__dir__, "ping_data", "ping-data-{}.csv.".format(timeOfMeasurment))
 
     np.savetxt(data_fName, # Saving the CSV file 
             latency,
