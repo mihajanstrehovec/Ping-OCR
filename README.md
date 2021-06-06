@@ -50,7 +50,7 @@ Simple python script that changes screenshots of ping to a CSV file with OCR. Cu
 - If you select the area with a screenshot and OCR has good results, you can always wright down the screenshot area coordinates (they should be printed out in the cosnole) and use them as manual input next time.
 
 # Problems
-- The robustness of the script has to be improved (image postprocessing)
+- The robustness of the script has to be improved (image preprocessing)
 - At this point there are some anomalies present, which can be checked by comparing the graph with the screenshots
 - If the OCR has any problems with character recognition, play around with the screenshot area
 
