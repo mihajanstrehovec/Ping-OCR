@@ -19,6 +19,9 @@ Simple python script that changes screenshots of ping to a CSV file with OCR. Cu
 - Make sure you add the Tesseract-OCR installation folder to System variable path - e.g. C:\Program Files\Tesseract-OCR (Only on Windows)
 - In the script folder you should also have a images, images_dpi and ping_data fodler
 
+![image](https://user-images.githubusercontent.com/48392708/120930723-c08e4f00-c6ee-11eb-91bd-38e01df0fcb4.png)
+
+
 
 # How it works
 
@@ -29,7 +32,8 @@ Simple python script that changes screenshots of ping to a CSV file with OCR. Cu
 - _(Drawing on screenshot of desktop)_ On the screenshot draw a rectangle, this is going to be the area the script will take screenshots of.
     - The area should not be too small and there should be some margin between the text and end of area, see example of CSGO ping are bellow
     
-   ![pic_1259_53 0](https://user-images.githubusercontent.com/48392708/118968191-e637fc00-b96b-11eb-8052-b00c4f5ebea8.png)
+   ![screenshotEG](https://user-images.githubusercontent.com/48392708/120930669-989eeb80-c6ee-11eb-8ab3-f5f852759901.png)
+
 
 - When you have sellected the area open back your game and start playing
 - After the duration for screenshoting has finished return to the script and press enter to start the OCR
