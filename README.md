@@ -57,3 +57,5 @@ Simple python script that changes screenshots of ping to a CSV file with OCR. Cu
 # Future
 - Make script more robust (Image postprocessing)
 - Conncet script with database and WebApp to store and display data
+
+For any aditional questions or issues feel free to contact me by email -> mjstrehovec@plume.com or on slack Member Id: U01U57QFG4W
