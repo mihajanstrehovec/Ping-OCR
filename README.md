@@ -17,7 +17,7 @@ Simple python script that changes screenshots of ping to a CSV file with OCR. Cu
     - pyscreenshot | _pip install pyscreenshot_
 - Make sure you have added the packages folder to your System variable path (Mostly important for Windows)
 - Make sure you add the Tesseract-OCR installation folder to System variable path - e.g. C:\Program Files\Tesseract-OCR (Only on Windows)
-- In the script folder you should also have a images, images_dpi and ping_data fodler
+- After running the script for the first time, it should create folders images, images_dpi and ping_data where the Ping-OCR.py file is.
 
 ![image](https://user-images.githubusercontent.com/48392708/120930723-c08e4f00-c6ee-11eb-91bd-38e01df0fcb4.png)
 
