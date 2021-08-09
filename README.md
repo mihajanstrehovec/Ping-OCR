@@ -44,6 +44,10 @@ Simple python script that changes screenshots of ping to a CSV file with OCR. Cu
 - Remember to delete all screenshots before you use the script again
 
 
+# Video demonstration
+If you are like me and prefer to see things in action and not just described in a wall of text, feel free to watch this short video demonstration https://www.youtube.com/watch?v=f9Ya-94itjo 
+
+
 # Tips
 - Please keep in mind that the script is not very robust, so make sure you have as close to ideal conditions for character recognition (e.g. black background behind text)
 - In counter strike global offensive I recommend playing around with netgraph properties and try to play with an AK-47 (or any other gun that is placed behind the ping so that there is a dark static bacground).
